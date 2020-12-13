@@ -15,7 +15,7 @@ export default function MenuHeader() {
 		let Categories = [];
 		for (let category of categories) {
 			Categories.push(
-				<li>
+				<li key={category._id}>
 					{category.parentId ? <a href={category.slug}>{category.name}</a> : <span>{category.name}</span>}
 
 					{category.children.length > 0 ? <ul>{renderCategories(category.children)}</ul> : null}
@@ -27,8 +27,7 @@ export default function MenuHeader() {
 
 	return (
 		<div className="menuheader">
-			<ul>{category.categories.length > 0 ? renderCategories(category.categories) : []}</ul>
-			<h1>Menu Header</h1>
+			<ul key={category._id}>{category.categories.length > 0 ? renderCategories(category.categories) : []}</ul>
 		</div>
 	);
 }

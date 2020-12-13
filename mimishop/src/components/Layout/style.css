@@ -35,3 +35,7 @@
 	background: #333;
 	color: #fff;
 }
+
+.menuheader {
+	z-index: 1;
+}
