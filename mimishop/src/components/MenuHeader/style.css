@@ -38,6 +38,7 @@
 	right: 0;
 	display: none;
 	border: 1px solid #cecece;
+	z-index: 1000;
 }
 
 .menuheader > ul > li:hover ul {
@@ -47,7 +48,7 @@
 .menuheader > ul > li > ul > li {
 	margin: 0 20px;
 	float: left;
-	min-width: 40px;
+	min-width: 50px;
 }
 
 .menuheader > ul > li > ul > li > a {

@@ -5,10 +5,10 @@ import './style.css';
 
 export default function MenuHeader() {
 	const category = useSelector((state) => state.category);
-	const dispath = useDispatch('');
+	const dispatch = useDispatch('');
 
 	useEffect(() => {
-		dispath(getAllCategories());
+		dispatch(getAllCategories());
 	}, []);
 
 	const renderCategories = (categories) => {
@@ -16,7 +16,11 @@ export default function MenuHeader() {
 		for (let category of categories) {
 			Categories.push(
 				<li key={category._id}>
-					{category.parentId ? <a href={category.slug}>{category.name}</a> : <span>{category.name}</span>}
+					{category.parentId ? (
+						<a href={`/${category.slug}?cid=${category._id}&type=${category.type}`}>{category.name}</a>
+					) : (
+						<span>{category.name}</span>
+					)}
 
 					{category.children.length > 0 ? <ul>{renderCategories(category.children)}</ul> : null}
 				</li>
