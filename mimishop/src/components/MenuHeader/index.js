@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCategories } from '../../actions';
 import './style.css';
@@ -30,8 +31,12 @@ export default function MenuHeader() {
 	};
 
 	return (
-		<div className="menuheader">
-			<ul key={category._id}>{category.categories.length > 0 ? renderCategories(category.categories) : []}</ul>
-		</div>
+		<Container fluid>
+			<div className="menuheader">
+				<ul key={category._id}>
+					{category.categories.length > 0 ? renderCategories(category.categories) : []}
+				</ul>
+			</div>
+		</Container>
 	);
 }

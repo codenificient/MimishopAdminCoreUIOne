@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { IoIosArrowDown, IoIosCart, IoIosSearch } from 'react-icons/io';
-import flipkartLogo from '../../images/logo/flipkart.png';
-import goldenStar from '../../images/logo/golden-star.png';
+import { IoIosArrowDown, IoIosCart, IoMdSearch } from 'react-icons/io';
+import { useDispatch } from 'react-redux';
+import { login } from '../../actions';
+import goldenStar from '../../images/golden.png';
+import flipkartLogo from '../../images/shopLogo2.png';
 import { DropdownMenu, MaterialButton, MaterialInput, Modal } from '../MaterialUI';
 import './style.css';
 
@@ -13,34 +15,63 @@ import './style.css';
 const Header = (props) => {
 	const [ loginModal, setLoginModal ] = useState(false);
 	const [ email, setEmail ] = useState('');
-	const [ password, setPassword ] = useState('');
+	const [password, setPassword] = useState('');
+	
+	const dispatch = useDispatch()
+
+	const cancelLogin = () => {
+		setEmail('');
+		setPassword('');
+		setLoginModal(false);
+	};
+
+	const userLogin = (email, password) => {
+		dispatch(login({ email, password}))
+	}
 
 	return (
 		// header starts here
 		<div className="header">
-			<Modal visible={loginModal} onClose={() => setLoginModal(false)}>
+			<Modal visible={loginModal} onClose={cancelLogin}>
 				<div className="authContainer">
 					<div className="row">
 						<div className="leftspace">
-							<h2>Login</h2>
-							<p>Get access to your Orders, Wishlist and Recommendations</p>
+							<h2 className="baisser">Connectez vous</h2>
+							<p className="baisser">
+								Gagnez access à vos Commandes, Liste de Souhaits et Récommendations
+							</p>
 						</div>
 						<div className="rightspace">
 							<MaterialInput
 								type="text"
-								label="Enter Email/Enter Mobile Number"
+								label="Email ou Numéro de Telephone"
 								value={email}
 								onChange={(e) => setEmail(e.target.value)}
 							/>
 
 							<MaterialInput
 								type="password"
-								label="Enter Password"
+								label="Votre Mot de Passe"
 								value={password}
 								onChange={(e) => setPassword(e.target.value)}
 								rightElement={<a href="#">Forgot?</a>}
 							/>
-							<MaterialButton title="Login" bgColor="#fb641b" textColor="#ffffff" />
+							<MaterialButton
+								title="Se connecter"
+								bgColor="rgb(23, 124, 124)"
+								textColor="#ddd"
+								style={{ margin: '40px 0 20px 0' }}
+								onClick={userLogin}
+							/>
+
+							<p style={{ margin: '.15rem' }}>OU</p>
+							<MaterialButton
+								title="Recevoir code par SMS"
+								bgColor="#ddd"
+								textColor="rgb(23, 124, 124)"
+								style={{ margin: '20px 0' }}
+									
+							/>
 						</div>
 					</div>
 				</div>
@@ -66,7 +97,7 @@ const Header = (props) => {
 					<div className="searchInputContainer">
 						<input className="searchInput" placeholder={'search for products, brands and more'} />
 						<div className="searchIconContainer">
-							<IoIosSearch
+							<IoMdSearch
 								style={{
 									color: '#2874f0'
 								}}

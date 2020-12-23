@@ -1,10 +1,12 @@
 .menuheader {
+	display: flex;
 	width: 100%;
-	height: 40px;
+	height: 60px;
 	background-color: #fff;
 	border-bottom: 1px solid #cecece;
 	box-shadow: 0 2px 2px -2px #333;
 	z-index: 1000;
+	justify-content: center;
 }
 
 .menuheader ul {
@@ -21,7 +23,7 @@
 
 .menuheader > ul > li > span {
 	display: block;
-	line-height: 40px;
+	line-height: 60px;
 	cursor: pointer;
 	padding: 0 15px;
 	font-size: 15px;

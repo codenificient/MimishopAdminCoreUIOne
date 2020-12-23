@@ -1,6 +1,6 @@
 .header {
 	width: 100%;
-	height: 56px;
+	height: 80px;
 	background-color: rgb(7, 155, 155);
 	color: #002240;
 	justify-content: center;
@@ -22,7 +22,7 @@
 }
 
 .logo {
-	width: 137px;
+	width: 170px;
 	height: 100%;
 	overflow: hidden;
 	display: flex;
@@ -36,6 +36,7 @@
 .exploreText {
 	font-size: 10px;
 	font-style: italic;
+	color: #fff;
 }
 .plusText {
 	font-size: 10px;
@@ -45,8 +46,8 @@
 	color: yellow;
 }
 .logo .goldenStar {
-	width: 10px;
-	height: 10px;
+	width: 15px;
+	height: 15px;
 }
 
 .searchInputContainer {
@@ -72,6 +73,7 @@
 	justify-content: center;
 	align-items: center;
 }
+
 .rightMenu {
 	display: flex;
 	flex: 1;
@@ -130,11 +132,15 @@
 	color: #fff;
 	letter-spacing: 1px;
 	background-image: url('../../images/login-image.png');
-	background-color: #2874f0;
+	background-color: rgb(7, 155, 155);
 	background-repeat: no-repeat;
 	background-position: center 85%;
 	padding: 40px 33px;
 	box-sizing: border-box;
+}
+
+.baisser {
+	margin-top: 15%;
 }
 
 .rightspace {
@@ -142,4 +148,5 @@
 	flex: 1;
 	flex-direction: column;
 	align-items: center;
+	margin-top: 10%;
 }

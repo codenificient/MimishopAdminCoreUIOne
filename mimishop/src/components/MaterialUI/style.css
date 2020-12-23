@@ -5,8 +5,8 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background: #000;
-	background-color: rgba(0, 0, 0, .6);
+	background: rgb(7, 155, 155);
+	background-color: rgba(0, 0, 0, .7);
 	z-index: 12;
 	display: flex;
 	justify-content: center;
@@ -24,19 +24,21 @@
 }
 .modalClose {
 	position: absolute;
-	color: #fff;
-	right: 15px;
-	font-size: 20px;
+	color: rgb(7, 155, 155);
+	top: 7px;
+	right: 70px;
+	font-size: 50px;
+	cursor: pointer;
 }
 
 /* Material Input */
 .materialInput {
 	width: 90%;
-	height: 30px;
-	border-bottom: 2px solid #2874f0;
+	height: 40px;
+	border-bottom: 2px solid rgb(7, 155, 155);
 	position: relative;
 	/* background-color: red; */
-	margin-top: 20px;
+	margin-top: 60px;
 }
 .materialInput input {
 	width: 100%;
@@ -50,14 +52,14 @@
 .materialInput .label {
 	position: absolute;
 	line-height: 30px;
-	color: grey;
+	color: rgb(7, 155, 155);
 	z-index: 0;
-	font-size: 12px;
+	font-size: 15px;
 	letter-spacing: 1px;
 	transition: all 0.1s ease-in-out;
 }
 .materialInput .label.focus {
-	top: -20px !important;
+	top: -30px !important;
 }
 
 /* Material Button */
@@ -67,7 +69,7 @@
 	padding: 15px;
 	font-size: 15px;
 	outline: none;
-	background-color: #fb641b;
+	background-color: rgb(23, 124, 124);
 	color: #ffffff;
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .2);
 	border: none;

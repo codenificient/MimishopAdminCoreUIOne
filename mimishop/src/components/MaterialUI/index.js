@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { IoMdCloseCircle } from 'react-icons/io';
 import './style.css';
 
 /**
@@ -15,7 +16,7 @@ const Modal = (props) => {
 			<div className="modalFixedBg">
 				<div style={{ position: 'relative' }}>
 					<div className="modalClose" onClick={props.onClose}>
-						X
+						<IoMdCloseCircle />
 					</div>
 					<div className="modalContainer">{props.children}</div>
 				</div>
@@ -33,7 +34,8 @@ const MaterialInput = (props) => {
 				className={`label ${focus ? 'focus' : ''}`}
 				style={{
 					top: 0,
-					lineHeight: 'none'
+					lineHeight: 'none',
+					...props.style
 				}}
 			>
 				{props.label}
@@ -64,9 +66,27 @@ const MaterialInput = (props) => {
 };
 
 const MaterialButton = (props) => {
+	const onClick = () => {
+		props.onClick && props.onClick();
+	};
+
 	return (
-		<div style={{ width: '90%' }}>
-			<button className="materialButton">{props.title && props.title}</button>
+		<div
+			style={{
+				width: '90%',
+				...props.style
+			}}
+		>
+			<button
+				className="materialButton"
+				style={{
+					background: props.bgColor,
+					color: props.textColor
+				}}
+				onClick={onClick}
+			>
+				{props.title && props.title}
+			</button>
 		</div>
 	);
 };
