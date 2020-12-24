@@ -28,7 +28,7 @@ export default function ProductListPage(props) {
 
 	return (
 		<Layout>
-			<h1>Product List Page</h1>
+			{/* <h1>Product List Page</h1> */}
 
 			{renderProduct()}
 		</Layout>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getAllProductsBySlug } from '../../../actions';
 import { generatePublicUrl } from '../../../urlConfig';
 import './style.css';
@@ -36,11 +37,15 @@ export default function ProductStore(props) {
 							<div className="productGridTitle">
 								{props.match.params.slug} products under {priceRange[key]}
 							</div>
-							<Button variant="dark">view all</Button>
+							<Button variant="dark">Voir tout</Button>
 						</div>
 						<div style={{ display: 'flex' }}>
 							{product.productsByPrice[key].map((product) => (
-								<div className="productContainer">
+								<Link
+									style={{ display: 'block' }}
+									to={`/${product.slug}/${product._id}/p`}
+									className="productContainer"
+								>
 									<div className="productImageContainer">
 										<img
 											src={generatePublicUrl(product.productPictures[0].img)}
@@ -57,7 +62,7 @@ export default function ProductStore(props) {
 										</div>
 										<div className="productPrice">{formatter.format(product.price)}</div>
 									</div>
-								</div>
+								</Link>
 							))}
 						</div>
 					</div>
