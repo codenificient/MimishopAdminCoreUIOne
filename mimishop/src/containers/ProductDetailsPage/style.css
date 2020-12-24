@@ -8,6 +8,11 @@
 	display: flex;
 	flex-direction: column;
 }
+
+.flexRow {
+	margin-top: 1rem;
+}
+
 .thumbnail {
 	width: 63px;
 	height: 63px;
@@ -62,7 +67,7 @@
 	margin: 0 10px;
 }
 .productDetails .productTitle {
-	font-size: 18px;
+	/* font-size: 18px; */
 	color: #212121;
 	font-weight: 400;
 }

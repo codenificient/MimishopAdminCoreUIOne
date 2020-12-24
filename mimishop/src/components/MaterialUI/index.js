@@ -73,7 +73,7 @@ const MaterialButton = (props) => {
 	return (
 		<div
 			style={{
-				width: '90%',
+				width: props.width,
 				...props.style
 			}}
 		>
@@ -85,6 +85,7 @@ const MaterialButton = (props) => {
 				}}
 				onClick={onClick}
 			>
+				{props.icon && props.icon} &nbsp;&nbsp;
 				{props.title && props.title}
 			</button>
 		</div>

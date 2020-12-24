@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { AiFillThunderbolt } from 'react-icons/ai';
-import { BiRuble, BiRupee } from 'react-icons/bi';
 import { IoIosArrowForward, IoIosStar, IoMdCart } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProductDetailsById } from '../../actions';
+import { addToCart, getProductDetailsById } from '../../actions';
 import Layout from '../../components/Layout';
 import { MaterialButton } from '../../components/MaterialUI';
 import { generatePublicUrl } from '../../urlConfig';
@@ -23,6 +22,12 @@ export default function ProductDetailsPage(props) {
 		};
 		dispatch(getProductDetailsById(payload));
 	}, []);
+
+	const formatter = new Intl.NumberFormat('fr-FR', {
+		style: 'currency',
+		currency: 'XOF',
+		minimumFractionDigits: 0
+	});
 
 	if (Object.keys(product.productDetails).length === 0) {
 		return null;
@@ -57,20 +62,28 @@ export default function ProductDetailsPage(props) {
 						{/* action buttons */}
 						<div className="flexRow">
 							<MaterialButton
-								title="ADD TO CART"
+								title="AJOUTER AU PANNIER"
 								bgColor="#ff9f00"
 								textColor="#ffffff"
 								style={{
-									marginRight: '5px'
+									marginRight: '15px',
+									width: '220px'
 								}}
 								icon={<IoMdCart />}
+								onClick={() => {
+									const { _id, name, price } = product.productDetails;
+									const img = product.productDetails.productPictures[0].img;
+									dispatch(addToCart({ _id, name, price, img }));
+									props.history.push(`/cart`);
+								}}
 							/>
 							<MaterialButton
-								title="BUY NOW"
+								title="ACHETER CECI"
 								bgColor="#fb641b"
 								textColor="#ffffff"
 								style={{
-									marginLeft: '5px'
+									marginLeft: '15px',
+									width: '220px'
 								}}
 								icon={<AiFillThunderbolt />}
 							/>
@@ -100,21 +113,16 @@ export default function ProductDetailsPage(props) {
 					</div>
 					{/* product description */}
 					<div className="productDetails">
-						<p className="productTitle">{product.productDetails.name}</p>
+						<h4 className="productTitle">{product.productDetails.name}</h4>
 						<div>
 							<span className="ratingCount">
 								4.3 <IoIosStar />
 							</span>
 							<span className="ratingNumbersReviews">72,234 Ratings & 8,140 Reviews</span>
 						</div>
-						<div className="extraOffer">
-							Extra <BiRupee />4500 off{' '}
-						</div>
+						<div className="extraOffer">Extra {formatter.format(4500)} off </div>
 						<div className="flexRow priceContainer">
-							<span className="price">
-								<BiRupee />
-								{product.productDetails.price}
-							</span>
+							<span className="price">{formatter.format(product.productDetails.price)}</span>
 							<span className="discount" style={{ margin: '0 10px' }}>
 								22% off
 							</span>
@@ -128,13 +136,13 @@ export default function ProductDetailsPage(props) {
 									fontWeight: '600'
 								}}
 							>
-								Available Offers
+								Offres Disponibles
 							</p>
 							<p style={{ display: 'flex' }}>
 								<span
 									style={{
 										width: '100px',
-										fontSize: '12px',
+										fontSize: '15px',
 										color: '#878787',
 										fontWeight: '600',
 										marginRight: '20px'
@@ -144,7 +152,8 @@ export default function ProductDetailsPage(props) {
 								</span>
 								<span
 									style={{
-										fontSize: '12px',
+										fontSize: '16px',
+										marginRight: '20px',
 										color: '#212121'
 									}}
 								>

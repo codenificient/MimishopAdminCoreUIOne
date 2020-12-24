@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getAllProductsBySlug } from '../../../actions';
+import Card from '../../../components/UI/Card';
 import { generatePublicUrl } from '../../../urlConfig';
 import './style.css';
 
@@ -32,13 +33,16 @@ export default function ProductStore(props) {
 		<React.Fragment>
 			{Object.keys(product.productsByPrice).map((key, index) => {
 				return (
-					<div className="card">
-						<div className="cardHeader">
-							<div className="productGridTitle">
-								{props.match.params.slug} products under {priceRange[key]}
-							</div>
-							<Button variant="dark">Voir tout</Button>
-						</div>
+					<Card
+						headerLeft={`${props.match.params.slug} products under ${priceRange[key]}`}
+						headerRight={<Button variant="dark">Voir tout</Button>}
+						style={{
+							width: 'calc(100% - 40px)',
+							margin: '20px',
+							color: 'rgb(7, 155, 155)',
+							fontSize: '20px'
+						}}
+					>
 						<div style={{ display: 'flex' }}>
 							{product.productsByPrice[key].map((product) => (
 								<Link
@@ -65,7 +69,7 @@ export default function ProductStore(props) {
 								</Link>
 							))}
 						</div>
-					</div>
+					</Card>
 				);
 			})}
 		</React.Fragment>
