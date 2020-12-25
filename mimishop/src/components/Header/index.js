@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { IoIosArrowDown, IoIosCart, IoMdSearch } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, signout } from '../../actions';
-import goldenStar from '../../images/golden.png';
-import flipkartLogo from '../../images/shopLogo2.png';
+import flipkartLogo from '../../images/shopLogo7.png';
 import { DropdownMenu, MaterialButton, MaterialInput, Modal } from '../MaterialUI';
 import './style.css';
 
@@ -150,11 +149,11 @@ const Header = (props) => {
 					<a href="">
 						<img src={flipkartLogo} className="logoimage" alt="" />
 					</a>
-					<a style={{ marginTop: '-10px' }}>
+					{/* <a style={{ marginTop: '-10px' }}>
 						<span className="exploreText">Explore</span>
 						<span className="plusText">Plus</span>
 						<img src={goldenStar} className="goldenStar" alt="" />
-					</a>
+					</a> */}
 				</div>
 				<div
 					style={{

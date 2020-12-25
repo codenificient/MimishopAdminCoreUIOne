@@ -74,6 +74,7 @@ const MaterialButton = (props) => {
 		<div
 			style={{
 				width: props.width,
+				margin: '2rem',
 				...props.style
 			}}
 		>

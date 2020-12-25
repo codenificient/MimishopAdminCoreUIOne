@@ -31,39 +31,23 @@
 	align-items: flex-end;
 }
 .logo .logoimage {
-	width: 75px;
-}
-.exploreText {
-	font-size: 10px;
-	font-style: italic;
-	color: #fff;
-}
-.plusText {
-	font-size: 10px;
-	margin: 0 2px;
-	text-transform: capitalize;
-	font-style: italic;
-	color: yellow;
-}
-.logo .goldenStar {
-	width: 15px;
-	height: 15px;
+	width: 140px;
 }
 
 .searchInputContainer {
 	width: 580px;
 	position: relative;
 	background: #fff;
-	height: 36px;
+	height: 40px;
 	border-radius: 1px;
 	overflow: hidden;
 	display: flex;
-	margin: 0 3rem;
+	margin: 0 2rem;
 }
 .searchInput {
-	width: 518px;
+	width: 520px;
 	border: 0;
-	height: 36px;
+	height: 40px;
 	outline: none;
 	box-sizing: border-box;
 	padding: 0 10px;
@@ -85,7 +69,7 @@
 
 .fullName {
 	display: inline-block;
-	width: 150px;
+	width: 140px;
 }
 
 .loginButton {
