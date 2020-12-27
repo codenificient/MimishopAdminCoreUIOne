@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getAllProductsBySlug } from '../../../actions';
 import Card from '../../../components/UI/Card';
-import { generatePublicUrl } from '../../../urlConfig';
+import { formatter, generatePublicUrl } from '../../../urlConfig';
 import './style.css';
 
 export default function ProductStore(props) {
@@ -22,12 +22,6 @@ export default function ProductStore(props) {
 	useEffect(() => {
 		dispatch(getAllProductsBySlug(match.params.slug));
 	}, []);
-
-	const formatter = new Intl.NumberFormat('fr-FR', {
-		style: 'currency',
-		currency: 'XOF',
-		minimumFractionDigits: 0
-	});
 
 	return (
 		<React.Fragment>

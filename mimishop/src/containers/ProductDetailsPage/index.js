@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { AiFillThunderbolt } from 'react-icons/ai';
 import { IoIosArrowForward, IoIosStar, IoMdCart } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, getProductDetailsById } from '../../actions';
+import { addToCartAction, getProductDetailsById } from '../../actions';
 import Layout from '../../components/Layout';
 import { MaterialButton } from '../../components/MaterialUI';
-import { generatePublicUrl } from '../../urlConfig';
+import { formatter, generatePublicUrl } from '../../urlConfig';
 import './style.css';
 
 export default function ProductDetailsPage(props) {
@@ -22,12 +22,6 @@ export default function ProductDetailsPage(props) {
 		};
 		dispatch(getProductDetailsById(payload));
 	}, []);
-
-	const formatter = new Intl.NumberFormat('fr-FR', {
-		style: 'currency',
-		currency: 'XOF',
-		minimumFractionDigits: 0
-	});
 
 	if (Object.keys(product.productDetails).length === 0) {
 		return null;
@@ -73,7 +67,7 @@ export default function ProductDetailsPage(props) {
 								onClick={() => {
 									const { _id, name, price } = product.productDetails;
 									const img = product.productDetails.productPictures[0].img;
-									dispatch(addToCart({ _id, name, price, img }));
+									dispatch(addToCartAction({ _id, name, price, img }));
 									props.history.push(`/cart`);
 								}}
 							/>

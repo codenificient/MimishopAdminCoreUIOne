@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { isUserLoggedIn, updateCart } from './actions';
+import { isUserLoggedIn, updateCartAction } from './actions';
 import './App.css';
 import CartPage from './containers/CartPage';
 import HomePage from './containers/HomePage';
@@ -21,7 +21,7 @@ function App() {
 	);
 
 	useEffect(() => {
-		dispatch(updateCart());
+		dispatch(updateCartAction());
 	}, []);
 
 	return (
