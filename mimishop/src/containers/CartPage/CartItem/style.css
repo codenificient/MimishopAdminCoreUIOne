@@ -18,8 +18,8 @@
 .cartItemDetails {
 	display: flex;
 	justify-content: space-between;
-    flex: 1;
-    margin: 0 15px;
+	flex: 1;
+	margin: 0 15px;
 }
 
 .cartItemNames {
@@ -46,16 +46,16 @@
 .quantityControl button {
 	width: 30px;
 	height: 30px;
-    border-radius: 50%;
-   
+	border-radius: 50%;
+
 	border: 1px solid #c2c2c2;
 	background-color: transparent;
 }
 
 .quantityControl input {
 	width: 40px;
-    height: 20px;
-     border: none;
+	height: 20px;
+	border: none;
 	/* border: 1px solid #c2c2c2; */
 	margin: 0 5px;
 	text-align: center;
