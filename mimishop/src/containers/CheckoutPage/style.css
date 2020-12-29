@@ -1,14 +1,14 @@
 .checkoutContainer {
 	width: calc(100% - 400px);
-    /* border: 1px solid #eee; */
+	/* border: 1px solid #eee; */
 }
 
 .checkoutStep {
 	box-sizing: border-box;
 	background: #fff;
 	box-shadow: 0 21px 21px 0px rgba(0, 0, 0, 0.2);
-    margin-bottom: 10px;
-    border-radius: 20px;
+	margin-bottom: 10px;
+	border-radius: 20px;
 }
 
 .checkoutHeader {
@@ -17,8 +17,8 @@
 	padding: 10px 20px;
 }
 .checkoutHeader.active {
-    background: rgb(7, 155, 155);
-    border-radius: 20px 20px 0px 0px;
+	background: rgb(7, 155, 155);
+	border-radius: 20px 20px 0px 0px;
 }
 .checkoutHeader .stepNumber {
 	display: inline-block;
@@ -38,8 +38,7 @@
 	font-size: 14px;
 	font-weight: 500;
 	color: #878787;
-    margin-left: 15px;
-
+	margin-left: 15px;
 }
 .checkoutHeader.active .stepTitle {
 	color: #fff;
@@ -52,8 +51,8 @@
 .addressContainer {
 	box-sizing: border-box;
 	padding: 20px;
-    background: #f5faff;
-    border-radius: 20px;
+	background: #f5faff;
+	border-radius: 20px;
 }
 .addressinfo {
 	padding-left: 60px;
