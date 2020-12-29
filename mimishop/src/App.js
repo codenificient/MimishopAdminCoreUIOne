@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { isUserLoggedIn, updateCartAction } from './actions';
 import './App.css';
 import CartPage from './containers/CartPage';
+import CheckoutPage from './containers/CheckoutPage';
 import HomePage from './containers/HomePage';
 import ProductDetailsPage from './containers/ProductDetailsPage';
 import ProductListPage from './containers/ProductListPage';
@@ -20,9 +21,12 @@ function App() {
 		[ auth.authenticate ]
 	);
 
-	useEffect(() => {
-		dispatch(updateCartAction());
-	}, []);
+	useEffect(
+		() => {
+			dispatch(updateCartAction());
+		},
+		[ auth.authenticate ]
+	);
 
 	return (
 		<div className="App">
@@ -30,6 +34,7 @@ function App() {
 				<Switch>
 					<Route path="/" exact component={HomePage} />
 					<Route path="/cart" component={CartPage} />
+					<Route path="/checkout" component={CheckoutPage} />
 					<Route path="/:productSlug/:productId/p" component={ProductDetailsPage} />
 					<Route path="/:slug" component={ProductListPage} />
 				</Switch>

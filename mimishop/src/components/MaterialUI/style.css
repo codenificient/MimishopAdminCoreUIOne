@@ -33,12 +33,13 @@
 
 /* Material Input */
 .materialInput {
-	width: 90%;
+	width: 94%;
+	min-width: 300px;
 	height: 40px;
 	border-bottom: 2px solid rgb(7, 155, 155);
 	position: relative;
 	/* background-color: red; */
-	margin-top: 60px;
+	margin: 40px 0 0 2%;
 }
 .materialInput input {
 	width: 100%;
@@ -48,6 +49,7 @@
 	z-index: 1;
 	background: transparent;
 	line-height: 30px;
+	padding: 10px;
 }
 .materialInput .label {
 	position: absolute;
@@ -59,7 +61,11 @@
 	transition: all 0.1s ease-in-out;
 }
 .materialInput .label.focus {
-	top: -30px !important;
+	top: -25px !important;
+}
+
+.inputContainer {
+	padding: 0 0 20px 0;
 }
 
 /* Material Button */
@@ -138,4 +144,11 @@
 .headerDropdownMenu li a:hover {
 	background-color: #f0f0f0;
 	cursor: pointer;
+}
+
+.anchorButton {
+	background: transparent;
+	border: none;
+	letter-spacing: 1px;
+	height: 40px;
 }

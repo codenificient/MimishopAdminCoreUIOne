@@ -27,7 +27,7 @@ export default function CartItem(props) {
 						<p className="cartItemNames">{name}</p>
 						<p>{formatter.format(price)}</p>
 					</div>
-					<div>Delivery in 3-5 days</div>
+					<div>Livraison dans 3-5 jours</div>
 				</div>
 			</div>
 
@@ -42,8 +42,8 @@ export default function CartItem(props) {
 					<input value={qty} readOnly />
 					<button onClick={onQuantityIncrement}>+</button>
 				</div>
-				<button className="cartActionBtn">save for later</button>
-				<button className="cartActionBtn">Remove</button>
+				<button className="cartActionBtn">sauvegarder sur liste</button>
+				<button className="cartActionBtn">Supprimer</button>
 			</div>
 		</div>
 	);

@@ -79,8 +79,8 @@
 	background: #fff;
 	text-align: center;
 	line-height: 30px;
-	color: #2874f0;
-	font-weight: 500;
+	color: #212121;
+	font-weight: 700;
 	font-size: 16px;
 	cursor: pointer;
 }
@@ -94,11 +94,12 @@
 }
 .cart {
 	font-weight: bold;
-	color: #fff;
+	color: #212121;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	margin: 0 20px;
+	text-decoration: none;
 }
 
 .logoutLink {
@@ -148,5 +149,11 @@
 	flex: 1;
 	flex-direction: column;
 	align-items: center;
-	margin-top: 10%;
+}
+
+.loginInputContainer {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0 30px;
+	margin: 40px 0;
 }

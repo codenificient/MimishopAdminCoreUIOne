@@ -73,8 +73,8 @@ const MaterialButton = (props) => {
 	return (
 		<div
 			style={{
-				width: props.width,
-				margin: '2rem',
+				width: '90%',
+				margin: '1rem',
 				...props.style
 			}}
 		>
@@ -121,4 +121,12 @@ const DropdownMenu = (props) => {
 	);
 };
 
-export { Modal, MaterialInput, MaterialButton, DropdownMenu };
+const Anchor = (props) => {
+	return (
+		<button {...props} className="anchorButton">
+			{props.name}
+		</button>
+	);
+};
+
+export { Modal, MaterialInput, MaterialButton, DropdownMenu, Anchor };

@@ -109,35 +109,37 @@ const Header = (props) => {
 							</p>
 						</div>
 						<div className="rightspace">
-							<MaterialInput
-								type="text"
-								label="Email ou Numéro de Telephone"
-								value={email}
-								onChange={(e) => setEmail(e.target.value)}
-							/>
+							<div className="loginInputContainer">
+								<MaterialInput
+									type="text"
+									label="Email ou Numéro de Telephone"
+									value={email}
+									onChange={(e) => setEmail(e.target.value)}
+								/>
 
-							<MaterialInput
-								type="password"
-								label="Votre Mot de Passe"
-								value={password}
-								onChange={(e) => setPassword(e.target.value)}
-								rightElement={<a href="#">Forgot?</a>}
-							/>
-							<MaterialButton
-								title="Se connecter"
-								bgColor="rgb(23, 124, 124)"
-								textColor="#ddd"
-								style={{ margin: '40px 0 20px 0', borderRadius: '30px' }}
-								onClick={userLogin}
-							/>
+								<MaterialInput
+									type="password"
+									label="Votre Mot de Passe"
+									value={password}
+									onChange={(e) => setPassword(e.target.value)}
+									rightElement={<a href="#">Forgot?</a>}
+								/>
+								<MaterialButton
+									title="Se connecter"
+									bgColor="rgb(23, 124, 124)"
+									textColor="#ddd"
+									style={{ margin: '40px 0 20px 0', borderRadius: '30px' }}
+									onClick={userLogin}
+								/>
 
-							<p style={{ margin: '.15rem' }}>OU</p>
-							<MaterialButton
-								title="Recevoir code par SMS"
-								bgColor="rgb(235, 235, 235)"
-								textColor="rgb(23, 124, 124)"
-								style={{ margin: '20px 0', borderRadius: '30px' }}
-							/>
+								<p style={{ textAlign: 'center' }}>OU</p>
+								<MaterialButton
+									title="Recevoir code par SMS"
+									bgColor="rgb(235, 235, 235)"
+									textColor="rgb(23, 124, 124)"
+									style={{ margin: '20px 0', borderRadius: '30px' }}
+								/>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -194,9 +196,9 @@ const Header = (props) => {
 						]}
 					/>
 					<div>
-						<a className="cart">
+						<a href={`/cart`} className="cart">
 							<IoIosCart />
-							<span style={{ margin: '0 10px' }}>Pannier</span>
+							<span style={{ margin: '0 10px', textDecoration: 'none' }}>Pannier</span>
 						</a>
 					</div>
 				</div>

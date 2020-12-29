@@ -12,3 +12,7 @@ h4 {
 .flexRow {
 	display: flex;
 }
+
+.sb {
+	justify-content: space-between;
+}
