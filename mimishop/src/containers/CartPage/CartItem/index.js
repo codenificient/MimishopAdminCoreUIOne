@@ -34,7 +34,7 @@ export default function CartItem(props) {
 			<div
 				style={{
 					display: 'flex',
-					margin: '5px 0'
+					margin: '12px 10px'
 				}}
 			>
 				<div className="quantityControl">
@@ -45,6 +45,7 @@ export default function CartItem(props) {
 				<button className="cartActionBtn">sauvegarder sur liste</button>
 				<button className="cartActionBtn">Supprimer</button>
 			</div>
+			<hr />
 		</div>
 	);
 }

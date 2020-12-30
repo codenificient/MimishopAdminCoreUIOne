@@ -23,7 +23,7 @@
 }
 
 .cartItemNames {
-	color: rgb(7, 155, 155);
+	color: rgb(4, 124, 124);
 }
 
 .cartActionBtn {
@@ -36,11 +36,13 @@
 	color: #212121;
 	cursor: pointer;
 	font-size: 15px;
+	margin-bottom: 1rem;
 }
 
 .quantityControl {
 	display: flex;
 	align-items: center;
+	margin-bottom: 1rem;
 }
 
 .quantityControl button {
@@ -56,7 +58,12 @@
 	width: 40px;
 	height: 20px;
 	border: none;
-	/* border: 1px solid #c2c2c2; */
+	border: 1px solid #ddd;
 	margin: 0 5px;
 	text-align: center;
+}
+
+hr {
+	background-color: #eee;
+	height: 0.03px;
 }

@@ -65,9 +65,9 @@ export default function ProductDetailsPage(props) {
 								}}
 								icon={<IoMdCart />}
 								onClick={() => {
-									const { _id, name, price } = product.productDetails;
+									const { _id, name, price, deliveryFee } = product.productDetails;
 									const img = product.productDetails.productPictures[0].img;
-									dispatch(addToCartAction({ _id, name, price, img }));
+									dispatch(addToCartAction({ _id, name, price, img, deliveryFee }));
 									props.history.push(`/cart`);
 								}}
 							/>
@@ -132,6 +132,30 @@ export default function ProductDetailsPage(props) {
 							>
 								Offres Disponibles
 							</p>
+
+							<div
+								style={{
+									fontSize: '20px',
+									color: '#177c7c',
+									fontWeight: '600',
+									margin: '25px 0'
+								}}
+							>
+								<span
+									style={{
+										fontSize: '15px',
+
+										fontWeight: '600',
+										marginRight: '20px'
+									}}
+								>
+									Frais de Livraison
+								</span>&nbsp;{product.productDetails.deliveryFee ? (
+									formatter.format(product.productDetails.deliveryFee)
+								) : (
+									'GRATUIT'
+								)}
+							</div>
 							<p style={{ display: 'flex' }}>
 								<span
 									style={{

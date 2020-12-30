@@ -154,7 +154,7 @@ const AddressForm = (props) => {
 				</div>
 				<div className="flexRow">
 					<MaterialButton
-						title="DELIVER HERE"
+						title="SAUVEGARDER"
 						onClick={onAddressSubmit}
 						style={{
 							width: '250px',
@@ -164,6 +164,8 @@ const AddressForm = (props) => {
 					<MaterialButton
 						title="CANCEL"
 						onClick={props.onCancel}
+						bgColor="rgb(235, 235, 235)"
+						textColor="rgb(23, 124, 124)"
 						style={{
 							width: '250px',
 							margin: '20px'

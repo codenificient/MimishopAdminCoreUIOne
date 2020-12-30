@@ -127,7 +127,7 @@ const Header = (props) => {
 								<MaterialButton
 									title="Se connecter"
 									bgColor="rgb(23, 124, 124)"
-									textColor="#ddd"
+									textColor="#fff"
 									style={{ margin: '40px 0 20px 0', borderRadius: '30px' }}
 									onClick={userLogin}
 								/>
@@ -198,7 +198,9 @@ const Header = (props) => {
 					<div>
 						<a href={`/cart`} className="cart">
 							<IoIosCart />
-							<span style={{ margin: '0 10px', textDecoration: 'none' }}>Pannier</span>
+							<span className="pannier" style={{ margin: '0 10px' }}>
+								Pannier
+							</span>
 						</a>
 					</div>
 				</div>

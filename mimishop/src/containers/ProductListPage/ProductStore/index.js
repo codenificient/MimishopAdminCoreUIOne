@@ -11,11 +11,11 @@ export default function ProductStore(props) {
 	const product = useSelector((state) => state.product);
 
 	const [ priceRange, setPriceRange ] = useState({
-		under2K: '2 000 CFA',
 		under5K: '5 000 CFA',
 		under8K: '8 000 CFA',
 		under10K: '10 000 CFA',
-		under100K: '100 000 CFA'
+		under100K: '100 000 CFA',
+		under300K: '300 000 CFA'
 	});
 	const dispatch = useDispatch();
 	const { match } = props;

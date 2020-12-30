@@ -4,11 +4,12 @@ import Card from '../UI/Card';
 
 export default function PriceDetails(props) {
 	return (
-		<Card headerLeft={'Détailles du Prix'} style={{ maxWidth: '380px' }}>
+		<Card headerLeft={`Détailles du Prix`} style={{ maxWidth: '380px', padding: '20px', fontWeight: 'bolder' }}>
 			<div
 				style={{
 					padding: '20px',
-					boxSizing: 'border-box'
+					boxSizing: 'border-box',
+					fontWeight: 'normal'
 				}}
 			>
 				<div className="flexRow sb" style={{ margin: '10px 0' }}>
@@ -17,14 +18,12 @@ export default function PriceDetails(props) {
 				</div>
 				<div className="flexRow sb" style={{ margin: '10px 0' }}>
 					<div>Charges de Livraison</div>
-					<div>{props.deliveryFee ? formatter.format(props.deliveryFee) : 'GRATUIT'}</div>
+					<div>{props.delivery ? formatter.format(props.delivery) : 'GRATUIT'}</div>
 				</div>
 
 				<div className="flexRow sb" style={{ margin: '10px 0' }}>
 					<div>Montant Total</div>
-					<div>
-						{formatter.format(props.deliveryFee ? props.subTotal + props.deliveryFee : props.subTotal)}
-					</div>
+					<div>{formatter.format(props.delivery ? props.subTotal + props.delivery : props.subTotal)}</div>
 				</div>
 			</div>
 		</Card>

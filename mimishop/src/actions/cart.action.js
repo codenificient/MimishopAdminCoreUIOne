@@ -18,7 +18,6 @@ const getCartItemsAction = () => {
 			}
 		} catch (error) {
 			console.log(error);
-			// return res.status(400).json({ error });
 		}
 	};
 };
@@ -27,7 +26,7 @@ export const addToCartAction = (product, newQty = 1) => {
 	return async (dispatch) => {
 		const { cart: { cartItems }, auth } = store.getState();
 
-		console.log('action::products', cartItems);
+		// console.log('action::products', cartItems);
 		const qty = cartItems[product._id] ? parseInt(cartItems[product._id].qty + newQty) : 1;
 		cartItems[product._id] = {
 			...product,
@@ -90,6 +89,8 @@ export const updateCartAction = () => {
 	return async (dispatch) => {
 		const { auth } = store.getState();
 		let cartItems = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : null;
+
+		console.log('hello from update cart action');
 
 		if (auth.authenticate) {
 			localStorage.removeItem('cart');

@@ -1,8 +1,8 @@
 .header {
 	width: 100%;
 	height: 80px;
-	background-color: rgb(7, 155, 155);
-	color: #002240;
+	background-color: rgb(23, 124, 124);
+	color: #fff;
 	justify-content: center;
 	display: flex;
 }
@@ -94,12 +94,16 @@
 }
 .cart {
 	font-weight: bold;
-	color: #212121;
+	color: #fff;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	margin: 0 20px;
 	text-decoration: none;
+}
+
+.cart:hover {
+	color: #ffff24;
 }
 
 .logoutLink {

@@ -36,7 +36,7 @@ export const addAddressAction = (payload) => {
 				console.log(res);
 				dispatch({
 					type: userConstants.ADD_USER_ADDRESS_SUCCESS,
-					payload: { userAddress: res.data.address }
+					payload: { address: res.data.address }
 				});
 			} else {
 				dispatch({

@@ -42,20 +42,32 @@ export default function CartPage(props) {
 		dispatch(addToCartAction({ _id, name, price, img }, -1));
 	};
 
+	if (props.onlyCartItems) {
+		return (
+			<React.Fragment>
+				{Object.keys(cartItems).map((key, index) => (
+					<CartItem
+						key={index}
+						cartItem={cartItems[key]}
+						onQuantityInc={onQuantityIncrement}
+						onQuantityDec={onQuantityDecrement}
+					/>
+				))}
+			</React.Fragment>
+		);
+	}
+
 	return (
 		<Layout>
 			<div className="cartContainer" style={{ alignItems: 'flex-start' }}>
-				<Card
-					headerLeft={`Mon Pannier`}
-					headerRight={<div>Livraison à</div>}
-					style={{ width: 'calc(100% - 400px)', overflow: 'hidden' }}
-				>
+				<Card headerLeft={`Mon Pannier`} style={{ width: 'calc(100% - 400px)', overflow: 'hidden' }}>
 					{Object.keys(cartItems).map((key, index) => (
 						<CartItem
 							key={index}
 							cartItem={cartItems[key]}
 							onQuantityInc={onQuantityIncrement}
 							onQuantityDec={onQuantityDecrement}
+							style={{ fontWeight: 'normal' }}
 						/>
 					))}
 
@@ -71,23 +83,32 @@ export default function CartPage(props) {
 						}}
 					>
 						<div
+							className="flexRow textCenter"
 							style={{
-								width: '250px'
+								width: '350px'
 							}}
 						>
-							<MaterialButton title="COMMANDER" onClick={() => props.history.push(`/checkout`)} />
+							<MaterialButton title="PAYER" onClick={() => props.history.push(`/checkout`)} />
+							<MaterialButton title="CONTINUER COURSES" onClick={() => props.history.push(`/`)} />
 						</div>
 					</div>
 				</Card>
+
 				<PriceDetails
-					totalItem={Object.keys(cart.cartItems).reduce(function(qty, key) {
-						return qty + cart.cartItems[key].qty;
+					totalItem={Object.keys(cartItems).reduce(function(qty, key) {
+						return qty + cartItems[key].qty;
 					}, 0)}
-					subTotal={Object.keys(cart.cartItems).reduce((subTotal, key) => {
-						const { price, qty } = cart.cartItems[key];
+					subTotal={Object.keys(cartItems).reduce((subTotal, key) => {
+						const { price, qty } = cartItems[key];
 						return subTotal + price * qty;
 					}, 0)}
-					deliveryFee={120}
+					delivery={Object.keys(cartItems).reduce((delivery, key) => {
+						let { deliveryFee, qty } = cartItems[key];
+						if (!deliveryFee) {
+							deliveryFee = 0;
+						}
+						return delivery + deliveryFee * qty;
+					}, 0)}
 				/>
 			</div>
 		</Layout>

@@ -3,10 +3,10 @@ import { productConstants } from '../actions/constants';
 const initialState = {
 	products: [],
 	productsByPrice: {
-		under200: [],
-		under500: [],
-		under800: [],
-		under1k: [],
+		under300K: [],
+		under5K: [],
+		under8K: [],
+		under10K: [],
 		under100k: []
 	},
 	pageRequest: false,

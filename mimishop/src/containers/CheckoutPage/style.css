@@ -17,7 +17,7 @@
 	padding: 10px 20px;
 }
 .checkoutHeader.active {
-	background: rgb(7, 155, 155);
+	background: rgb(23, 124, 124);
 	border-radius: 20px 20px 0px 0px;
 }
 .checkoutHeader .stepNumber {
@@ -66,8 +66,7 @@
 	box-sizing: border-box;
 	padding-bottom: 20px;
 	font-weight: 600;
-	font-family: 'Roboto';
-	font-size: 12px;
+	font-size: 15px;
 	color: #333;
 }
 .addressType {
@@ -77,16 +76,16 @@
 	background: #eee;
 	font-weight: 500;
 	padding: 1px 5px;
-	font-size: 10px;
+	font-size: 15px;
 	border-radius: 2px;
 	color: #777777;
 }
 .fullAddress {
-	font-size: 12px;
+	font-size: 15px;
 	letter-spacing: 1px;
-	line-height: 18px;
+	line-height: 30px;
 }
 .stepCompleted {
 	padding: 0 0 20px 60px;
-	font-size: 12px;
+	font-size: 15px;
 }
