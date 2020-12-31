@@ -105,6 +105,31 @@ export const getOrdersAction = () => {
 	};
 };
 
+export const getOrderAction = (payload) => {
+	return async (dispatch) => {
+		try {
+			const res = await axiosInstance.post(`/getorder`, payload);
+			dispatch({ type: userConstants.GET_USER_ORDER_DETAILS_REQUEST });
+
+			if (res.status === 200) {
+				console.log(res);
+				dispatch({
+					type: userConstants.GET_USER_ORDER_DETAILS_SUCCESS,
+					payload: { order: res.data.order }
+				});
+				
+			} else {
+				dispatch({
+					type: userConstants.GET_USER_ORDER_DETAILS_FAILURE,
+					payload: { error: res.data.error }
+				});
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+
 export const clearCartAction = () => {
 	return async (dispatch) => {
 		try {

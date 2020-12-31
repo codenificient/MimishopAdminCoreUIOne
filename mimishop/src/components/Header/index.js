@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { IoIosArrowDown, IoIosCart, IoMdSearch } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
-import { login, signout } from '../../actions';
+import { login, signout, signup as _signup } from '../../actions';
 import flipkartLogo from '../../images/shopLogo7.png';
 import { DropdownMenu, MaterialButton, MaterialInput, Modal } from '../MaterialUI';
 import './style.css';
@@ -15,6 +15,9 @@ const Header = (props) => {
 	const [ loginModal, setLoginModal ] = useState(false);
 	const [ email, setEmail ] = useState('');
 	const [ password, setPassword ] = useState('');
+	const [ signup, setSignup ] = useState('');
+	const [ firstName, setFirstName ] = useState('');
+	const [ lastName, setLastName ] = useState('');
 
 	const dispatch = useDispatch();
 	const auth = useSelector((state) => state.auth);
@@ -25,7 +28,18 @@ const Header = (props) => {
 		setLoginModal(false);
 	};
 
+	const userSignup = () => {
+		const user = { firstName, lastName, email, password };
+		if (firstName === '' || lastName === '' || email === '' || password === '') {
+			return;
+		}
+		dispatch(_signup(user));
+	};
+
 	const userLogin = () => {
+		if (signup) {
+			userSignup();
+		}
 		dispatch(login({ email, password }));
 	};
 	const userLogout = () => {
@@ -85,7 +99,14 @@ const Header = (props) => {
 		return (
 			<DropdownMenu
 				menu={
-					<a className="loginButton" style={{ color: '#177c7c' }} onClick={() => setLoginModal(true)}>
+					<a
+						className="loginButton"
+						style={{ color: '#177c7c' }}
+						onClick={() => {
+							setLoginModal(true);
+							setSignup(false);
+						}}
+					>
 						Connection
 					</a>
 				}
@@ -114,7 +135,15 @@ const Header = (props) => {
 				firstMenu={
 					<div className="firstmenu">
 						<span style={{ color: '#177c7c', fontSize: '14px' }}>Nouveau Client?</span>
-						<a style={{ color: '#177c7c', fontSize: '14px', fontWeight: '600' }}>Créer un compte</a>
+						<a
+							style={{ color: '#177c7c', fontSize: '14px', fontWeight: '600' }}
+							onclick={() => {
+								setLoginModal(true);
+								setSignup(true);
+							}}
+						>
+							Créer un compte
+						</a>
 					</div>
 				}
 			/>
@@ -135,6 +164,23 @@ const Header = (props) => {
 						</div>
 						<div className="rightspace">
 							<div className="loginInputContainer">
+								{signup && (
+									<MaterialButton
+										type="text"
+										label="Enter First Name"
+										value={firstName}
+										onChange={(e) => setFirstName(e.target.value)}
+									/>
+								)}
+								{signup && (
+									<MaterialButton
+										type="text"
+										label="Enter Last Name"
+										value={lastName}
+										onChange={(e) => setLastName(e.target.value)}
+									/>
+								)}
+
 								<MaterialInput
 									type="text"
 									label="Email ou Numéro de Telephone"
@@ -150,7 +196,7 @@ const Header = (props) => {
 									rightElement={<a href="#">Forgot?</a>}
 								/>
 								<MaterialButton
-									title="Se connecter"
+									title={signup ? 'Creer nouveau Compte' : 'Se connecter'}
 									bgColor="rgb(23, 124, 124)"
 									textColor="#fff"
 									style={{ margin: '40px 0 20px 0', borderRadius: '30px' }}

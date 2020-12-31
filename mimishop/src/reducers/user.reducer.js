@@ -5,7 +5,9 @@ const initState = {
 	orders: [],
 	error: null,
 	loading: false,
-	fetchingOrder: false
+	fetchingOrders: false,
+	fetcthDetails: false,
+	orderDetails: []
 };
 
 export default (state = initState, action) => {
@@ -36,7 +38,7 @@ export default (state = initState, action) => {
 				loading: true
 			};
 			break;
-		
+
 		case userConstants.ADD_USER_ADDRESS_SUCCESS:
 			state = {
 				...state,
@@ -44,7 +46,7 @@ export default (state = initState, action) => {
 				loading: false
 			};
 			break;
-		
+
 		case userConstants.ADD_USER_ADDRESS_FAILURE:
 			state = {
 				...state,
@@ -56,20 +58,41 @@ export default (state = initState, action) => {
 		case userConstants.GET_USER_ORDER_REQUEST:
 			state = {
 				...state,
-				fetchingOrder: true
+				fetchingOrders: true
 			};
 			break;
 		case userConstants.GET_USER_ORDER_SUCCESS:
 			state = {
 				...state,
-				fetchingOrder: false,
+				fetchingOrders: false,
 				orders: action.payload.orders
 			};
 			break;
 		case userConstants.GET_USER_ORDER_FAILURE:
 			state = {
 				...state,
-				fetchingOrder: false,
+				fetchingOrders: false,
+				error: action.payload.error
+			};
+			break;
+
+		case userConstants.GET_USER_ORDER_DETAILS_REQUEST:
+			state = {
+				...state,
+				fetcthDetails: true
+			};
+			break;
+		case userConstants.GET_USER_ORDER_DETAILS_SUCCESS:
+			state = {
+				...state,
+				fetcthDetails: false,
+				orderDetails: action.payload.order
+			};
+			break;
+		case userConstants.GET_USER_ORDER_DETAILS_FAILURE:
+			state = {
+				...state,
+				fetcthDetails: false,
 				error: action.payload.error
 			};
 			break;
