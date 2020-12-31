@@ -4,7 +4,7 @@ import { IoIosArrowForward, IoIosStar, IoMdCart } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCartAction, getProductDetailsById } from '../../actions';
 import Layout from '../../components/Layout';
-import { MaterialButton } from '../../components/MaterialUI';
+import { Breed, MaterialButton } from '../../components/MaterialUI';
 import { formatter, generatePublicUrl } from '../../urlConfig';
 import './style.css';
 
@@ -86,25 +86,29 @@ export default function ProductDetailsPage(props) {
 				</div>
 				<div>
 					{/* home > category > subCategory > productName */}
-					<div className="breed">
-						<ul>
-							<li>
-								<a href="#">Home</a>
-								<IoIosArrowForward />
-							</li>
-							<li>
-								<a href="#">Mobiles</a>
-								<IoIosArrowForward />
-							</li>
-							<li>
-								<a href="#">Samsung</a>
-								<IoIosArrowForward />
-							</li>
-							<li>
-								<a href="#">{product.productDetails.name}</a>
-							</li>
-						</ul>
-					</div>
+					<Breed
+						breed={[
+							{
+								name: 'Accueil',
+								href: '/'
+							},
+							{
+								name: 'Mobiles',
+								href: '/mobiles/'
+							},
+							{
+								name: product.productDetails.name.split(' ')[0],
+								href: `/${product.productDetails.name.split(' ')[0]}?cid=${product.productDetails
+									.category}&type=store`
+							},
+							{
+								name: product.productDetails.name,
+								href: `/${product.productDetails.slug}/${product.productDetails._id}/p`
+							}
+						]}
+						breedIcon={<IoIosArrowForward />}
+					/>
+
 					{/* product description */}
 					<div className="productDetails">
 						<h4 className="productTitle">{product.productDetails.name}</h4>

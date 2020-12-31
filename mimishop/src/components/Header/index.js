@@ -32,6 +32,10 @@ const Header = (props) => {
 		dispatch(signout());
 	};
 
+	const userOrders = () => {
+		props.history.push(`/accout/orders`);
+	};
+
 	useEffect(
 		() => {
 			if (auth.authenticate) {
@@ -53,7 +57,14 @@ const Header = (props) => {
 					{ label: 'My Profile', href: '', icon: null },
 					{ label: 'SuperCoin Zone', href: '', icon: null },
 					{ label: 'Flipkart Plus Zone', href: '', icon: null },
-					{ label: 'Orders', href: '', icon: null },
+					{
+						label: 'Orders',
+						href: `/account/orders`,
+						icon: null,
+						onclick: () => {
+							!auth.authenticate && setLoginModal(true);
+						}
+					},
 					{ label: 'Wishlist', href: '', icon: null },
 					{ label: 'My Chats', href: '', icon: null },
 					{ label: 'Rewards', href: '', icon: null },
@@ -79,8 +90,22 @@ const Header = (props) => {
 					</a>
 				}
 				menus={[
-					{ label: 'Mon Profile', href: '', icon: null },
-					{ label: 'Commandes', href: '', icon: null },
+					{
+						label: 'Mon Profile',
+						href: `/account/profile`,
+						icon: null,
+						onClick: () => {
+							!auth.authenticate && setLoginModal(true);
+						}
+					},
+					{
+						label: 'Commandes',
+						href: `/account/orders`,
+						icon: null,
+						onClick: () => {
+							!auth.authenticate && setLoginModal(true);
+						}
+					},
 					{ label: 'Zone VIP', href: '', icon: null },
 					{ label: 'Liste de Souhaits', href: '', icon: null },
 					{ label: 'Récompenses', href: '', icon: null },

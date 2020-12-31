@@ -43,26 +43,7 @@
 	max-height: 100%;
 	object-fit: contain;
 }
-.breed ul {
-	padding: 0;
-	margin: 0;
-	display: flex;
-	align-items: center;
-}
-.breed ul li {
-	list-style: none;
-	margin-right: 5px;
-	display: flex;
-	align-items: center;
-	font-size: 12px;
-}
-.breed ul li a {
-	text-decoration: none;
-	color: #777;
-	display: inline-block;
-	font-size: 12px;
-	margin: 0 10px;
-}
+
 .productDetails {
 	margin: 0 10px;
 }

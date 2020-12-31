@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from '../../components/Layout';
 import getParams from '../../utils/getParams';
+import ClothingAndAccessories from './ClothingAndAccessories';
 import ProductPage from './ProductPage';
 import ProductStore from './ProductStore';
 import './style.css';
@@ -19,9 +20,9 @@ export default function ProductListPage(props) {
 			case 'page':
 				content = <ProductPage {...props} />;
 				break;
-
+			case 'product':
 			default:
-				content = null;
+				content = <ClothingAndAccessories {...props} />;
 		}
 		return content;
 	};

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAddressAction, getCartItemsAction, login } from '../../actions';
+import { addOrderAction, getAddressAction, getCartItemsAction, login } from '../../actions';
 import Layout from '../../components/Layout';
 import { Anchor, MaterialButton, MaterialInput } from '../../components/MaterialUI';
 import PriceDetails from '../../components/PriceDetails';
@@ -85,6 +85,7 @@ const CheckoutPage = (props) => {
 	const [ selectedAddress, setSelectedAddress ] = useState(null);
 	const [ orderSummary, setOrderSummary ] = useState(false);
 	const [ orderConfirmation, setOrderConfirmation ] = useState(false);
+	const [ paymentStep, setPaymentStep ] = useState(false);
 	const [ paymentOption, setPaymentOption ] = useState(false);
 	const [ confirmOrder, setConfirmOrder ] = useState(false);
 
@@ -123,17 +124,26 @@ const CheckoutPage = (props) => {
 	const userOrderConfirmation = () => {
 		setOrderConfirmation(true);
 		setOrderSummary(false);
-		setPaymentOption(true);
+		setPaymentStep(true);
 	};
 
 	const onConfirmOrder = () => {
-		const totalAmount = Object.keys(cart.cartItems).reduce((totalPrice, key) => {
+		const subTotal = Object.keys(cart.cartItems).reduce((subTotal, key) => {
 			const { price, qty } = cart.cartItems[key];
-			return totalPrice + price * qty;
+			return subTotal + price * qty;
 		}, 0);
+		const delivery = Object.keys(cart.cartItems).reduce((delivery, key) => {
+			let { deliveryFee, qty } = cart.cartItems[key];
+			if (!deliveryFee) {
+				deliveryFee = 0;
+			}
+			return delivery + deliveryFee * qty;
+		}, 0);
+		const totalAmount = subTotal + delivery;
 		const items = Object.keys(cart.cartItems).map((key) => ({
 			productId: key,
 			payablePrice: cart.cartItems[key].price,
+			deliveryFee: cart.cartItems[key].deliveryFee,
 			purchasedQty: cart.cartItems[key].qty
 		}));
 		const payload = {
@@ -141,11 +151,13 @@ const CheckoutPage = (props) => {
 			totalAmount,
 			items,
 			paymentStatus: 'pending',
-			paymentType: 'cod'
+			deliveryCharges: delivery,
+			paymentType: paymentOption ? paymentOption : 'cod'
 		};
 
-		console.log(payload);
-		// dispatch(addOrder(payload));
+		// console.log(payload);
+		// console.log(paymentOption);
+		dispatch(addOrderAction(payload));
 		setConfirmOrder(true);
 	};
 
@@ -178,7 +190,7 @@ const CheckoutPage = (props) => {
 		},
 		[ user.placedOrderId ]
 	);
-
+	// console.log({ cart.cartItems.paymentOption })
 	return (
 		<Layout>
 			<div className="cartContainer" style={{ alignItems: 'flex-start' }}>
@@ -216,10 +228,11 @@ const CheckoutPage = (props) => {
 												title="Se connecter"
 												bgColor="rgb(23, 124, 124)"
 												textColor="#fff"
-												style={{ margin: '20px', borderRadius: '30px', minWidth: '120px' }}
 												style={{
-													width: '300px',
-													margin: '0 0 20px 20px'
+													margin: '20px',
+													borderRadius: '30px',
+													minWidth: '120px',
+													width: '300px'
 												}}
 												onClick={userLogin}
 											/>
@@ -228,10 +241,11 @@ const CheckoutPage = (props) => {
 												title="Recevoir code par SMS"
 												bgColor="rgb(235, 235, 235)"
 												textColor="rgb(23, 124, 124)"
-												style={{ margin: '20px', borderRadius: '30px', minWidth: '160px' }}
 												style={{
-													width: '300px',
-													margin: '0 0 20px 20px'
+													margin: '20px',
+													borderRadius: '30px',
+													minWidth: '160px',
+													width: '300px'
 												}}
 											/>
 										</div>
@@ -320,28 +334,53 @@ const CheckoutPage = (props) => {
 					<CheckoutStep
 						stepNumber={'4'}
 						title={'PAYMENT OPTIONS'}
-						active={paymentOption && auth.authenticate}
+						active={paymentStep && auth.authenticate}
 						body={
-							paymentOption && (
+							paymentStep && (
 								<div className="stepCompleted">
 									<div className="flexRow">
-										<input type="radio" name="paymentOption" value="cod" />&nbsp;
+										<input
+											type="radio"
+											name="paymentOption"
+											value="credit"
+											onClick={(e) => setPaymentOption(e.target.value)}
+										/>&nbsp;
 										<div>Credit card</div>
 									</div>
 									<div className="flexRow">
-										<input type="radio" name="paymentOption" value="cod" />&nbsp;
+										<input
+											type="radio"
+											name="paymentOption"
+											value="debit"
+											onClick={(e) => setPaymentOption(e.target.value)}
+										/>&nbsp;
 										<div>Debit card</div>
 									</div>
 									<div className="flexRow">
-										<input type="radio" name="paymentOption" value="cod" />&nbsp;
+										<input
+											type="radio"
+											name="paymentOption"
+											value="paypal"
+											onClick={(e) => setPaymentOption(e.target.value)}
+										/>&nbsp;
 										<div>PayPal</div>
 									</div>
 									<div className="flexRow">
-										<input type="radio" name="paymentOption" value="cod" />&nbsp;
+										<input
+											type="radio"
+											name="paymentOption"
+											value="affirm"
+											onClick={(e) => setPaymentOption(e.target.value)}
+										/>&nbsp;
 										<div>Affirm</div>
 									</div>
 									<div className="flexRow">
-										<input type="radio" name="paymentOption" value="cod" />&nbsp;
+										<input
+											type="radio"
+											name="paymentOption"
+											value="cod"
+											onClick={(e) => setPaymentOption(e.target.value)}
+										/>&nbsp;
 										<div>Cash on delivery</div>
 									</div>
 									<div className="flexRow textCenter">

@@ -1,0 +1,23 @@
+.orderItemContainer {
+	display: flex;
+	box-sizing: border-box;
+	padding: 10px;
+	justify-content: space-between;
+}
+
+.orderImgContainer {
+	width: 80px;
+	height: 80px;
+	overflow: 'hidden';
+	object-fit: 'contain';
+	text-align: 'center';
+}
+
+.orderImg {
+	max-width: 80px;
+	max-height: 180;
+}
+
+.orderProductName {
+	width: 500px;
+}

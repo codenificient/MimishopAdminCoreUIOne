@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { IoIosArrowForward } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCartAction, getCartItemsAction } from '../../actions';
+import { addToCartAction, clearCartAction, getCartItemsAction } from '../../actions';
 import Layout from '../../components/Layout';
-import { MaterialButton } from '../../components/MaterialUI';
+import { Breed, MaterialButton } from '../../components/MaterialUI';
 import PriceDetails from '../../components/PriceDetails';
 import Card from '../../components/UI/Card';
 import CartItem from './CartItem';
@@ -42,6 +43,15 @@ export default function CartPage(props) {
 		dispatch(addToCartAction({ _id, name, price, img }, -1));
 	};
 
+	const onQuantityUpdate = (_id, qty) => {
+		const { name, price, img } = cartItems[_id];
+		dispatch(addToCartAction(_id, name, price, img), qty);
+	};
+
+	const clearCart = () => {
+		dispatch(clearCartAction());
+	};
+
 	if (props.onlyCartItems) {
 		return (
 			<React.Fragment>
@@ -51,6 +61,7 @@ export default function CartPage(props) {
 						cartItem={cartItems[key]}
 						onQuantityInc={onQuantityIncrement}
 						onQuantityDec={onQuantityDecrement}
+						onQuantityUp={onQuantityUpdate}
 					/>
 				))}
 			</React.Fragment>
@@ -59,6 +70,19 @@ export default function CartPage(props) {
 
 	return (
 		<Layout>
+			<Breed
+				breed={[
+					{
+						name: 'Accueil',
+						href: '/'
+					},
+					{
+						name: 'Mon Pannier',
+						href: '/cart/'
+					}
+				]}
+				breedIcon={<IoIosArrowForward />}
+			/>
 			<div className="cartContainer" style={{ alignItems: 'flex-start' }}>
 				<Card headerLeft={`Mon Pannier`} style={{ width: 'calc(100% - 400px)', overflow: 'hidden' }}>
 					{Object.keys(cartItems).map((key, index) => (
@@ -85,11 +109,12 @@ export default function CartPage(props) {
 						<div
 							className="flexRow textCenter"
 							style={{
-								width: '350px'
+								width: '100%'
 							}}
 						>
 							<MaterialButton title="PAYER" onClick={() => props.history.push(`/checkout`)} />
-							<MaterialButton title="CONTINUER COURSES" onClick={() => props.history.push(`/`)} />
+							<MaterialButton title="RETOURNER" onClick={() => props.history.goBack()} />
+							<MaterialButton title="VIDER PANNIER" onClick={clearCart} />
 						</div>
 					</div>
 				</Card>

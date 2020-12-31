@@ -30,7 +30,7 @@ const AddressForm = (props) => {
 	};
 
 	const onAddressSubmit = (e) => {
-		if (zipCode.length == 0) {
+		if (zipCode.length === 0) {
 			return;
 		}
 		const payload = {
