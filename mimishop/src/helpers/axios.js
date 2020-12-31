@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { authConstants } from '../actions/constants';
 import store from '../store';
 import { api } from '../urlConfig';
 
@@ -19,5 +20,21 @@ axiosInstance.interceptors.request.use((req) => {
 	}
 	return req;
 });
+
+axiosInstance.interceptors.response.use(
+	(res) => {
+		return res;
+	},
+	(error) => {
+		console.log(error.message);
+		const status = error.response ? error.response.status : 500;
+
+		if (status && status === 500) {
+			localStorage.clear();
+			store.dispatch({ type: authConstants.LOGOUT_SUCCESS });
+		}
+		return Promise.reject(error);
+	}
+);
 
 export default axiosInstance;
