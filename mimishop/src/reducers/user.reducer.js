@@ -5,9 +5,11 @@ const initState = {
 	orders: [],
 	error: null,
 	loading: false,
+	addingOrder: false,
 	fetchingOrders: false,
 	fetcthDetails: false,
-	orderDetails: []
+	orderDetails: [],
+	placedOrderId: null
 };
 
 export default (state = initState, action) => {
@@ -93,6 +95,26 @@ export default (state = initState, action) => {
 			state = {
 				...state,
 				fetcthDetails: false,
+				error: action.payload.error
+			};
+			break;
+		case userConstants.ADD_USER_ORDER_REQUEST:
+			state = {
+				...state,
+				addingOrder: true
+			};
+			break;
+		case userConstants.ADD_USER_ORDER_SUCCESS:
+			state = {
+				...state,
+				addingOrder: false,
+				placedOrderId: action.payload.order._id
+			};
+			break;
+		case userConstants.ADD_USER_ORDER_FAILURE:
+			state = {
+				...state,
+				addingOrder: false,
 				error: action.payload.error
 			};
 			break;

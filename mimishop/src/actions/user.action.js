@@ -33,7 +33,7 @@ export const addAddressAction = (payload) => {
 			dispatch({ type: userConstants.ADD_USER_ADDRESS_REQUEST });
 
 			if (res.status === 201) {
-				console.log(res);
+				// console.log(res);
 				dispatch({
 					type: userConstants.ADD_USER_ADDRESS_SUCCESS,
 					payload: { address: res.data.address }
@@ -57,14 +57,14 @@ export const addOrderAction = (payload) => {
 			dispatch({ type: userConstants.ADD_USER_ORDER_REQUEST });
 
 			if (res.status === 201) {
-				console.log(res);
+				// console.log(res);
 				dispatch({
 					type: cartConstants.RESET_CART
 				});
-				// dispatch({
-				// 	type: userConstants.ADD_USER_ORDER_SUCCESS,
-				// 	payload: { address: res.data.address }
-				// });
+				dispatch({
+					type: userConstants.ADD_USER_ORDER_SUCCESS,
+					payload: { order: res.data.order }
+				});
 			} else {
 				dispatch({
 					type: userConstants.ADD_USER_ORDER_FAILURE,
@@ -84,18 +84,14 @@ export const getOrdersAction = () => {
 			dispatch({ type: userConstants.GET_USER_ORDER_REQUEST });
 
 			if (res.status === 200) {
-				console.log(res);
+				// console.log(res);
 				dispatch({
 					type: userConstants.GET_USER_ORDER_SUCCESS,
 					payload: { orders: res.data.orders }
 				});
-				// dispatch({
-				// 	type: userConstants.ADD_USER_ORDER_SUCCESS,
-				// 	payload: { address: res.data.address }
-				// });
 			} else {
 				dispatch({
-					type: userConstants.ADD_USER_ORDER_FAILURE,
+					type: userConstants.GET_USER_ORDER_FAILURE,
 					payload: { error: res.data.error }
 				});
 			}
@@ -105,19 +101,18 @@ export const getOrdersAction = () => {
 	};
 };
 
-export const getOrderAction = (payload) => {
+export const getOrderDetailsAction = (payload) => {
 	return async (dispatch) => {
 		try {
 			const res = await axiosInstance.post(`/getorder`, payload);
 			dispatch({ type: userConstants.GET_USER_ORDER_DETAILS_REQUEST });
 
+			// console.log('attempt order action');
 			if (res.status === 200) {
-				console.log(res);
 				dispatch({
 					type: userConstants.GET_USER_ORDER_DETAILS_SUCCESS,
 					payload: { order: res.data.order }
 				});
-				
 			} else {
 				dispatch({
 					type: userConstants.GET_USER_ORDER_DETAILS_FAILURE,

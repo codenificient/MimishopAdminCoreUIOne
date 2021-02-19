@@ -47,3 +47,16 @@ h4 {
 	font-size: 14px;
 	margin: 0 10px;
 }
+
+.stepCompleted {
+	padding: 0 0 20px 50px;
+	font-size: 16px;
+}
+
+button {
+	border-style: none;
+}
+
+button:focus {
+	border-style: none;
+}

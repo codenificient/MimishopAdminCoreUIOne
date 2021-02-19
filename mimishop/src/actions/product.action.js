@@ -10,7 +10,7 @@ export const getAllProductsBySlug = (slug) => {
 				payload: res.data
 			});
 		}
-		console.log(res);
+		// console.log(res);
 	};
 };
 
@@ -46,7 +46,7 @@ export const getProductDetailsById = (payload) => {
 		try {
 			const { productId } = payload.params;
 			res = await axiosInstance.get(`/product/${productId}`);
-			console.log(res);
+			// console.log(res);
 
 			dispatch({
 				type: productConstants.GET_PRODUCT_DETAILS_BY_ID_SUCCESS,
@@ -60,3 +60,23 @@ export const getProductDetailsById = (payload) => {
 		}
 	};
 };
+
+// export const getAllProductsAction = () => {
+// 	return async (dispatch) => {
+// 		dispatch({ type: productConstants.GET_ALL_PRODUCT_REQUEST });
+// 		let res;
+// 		try {
+// 			res = await axiosInstance.post(`/product/getproducts`);
+// 			console.log(res);
+// 			dispatch({
+// 				type: productConstants.GET_ALL_PRODUCT_SUCCESS,
+// 				payload: { allProducts: res.data.allProducts }
+// 			});
+// 		} catch (error) {
+// 			dispatch({
+// 				type: productConstants.GET_ALL_PRODUCT_FAILURE,
+// 				payload: { error: res.data.error }
+// 			});
+// 		}
+// 	};
+// };

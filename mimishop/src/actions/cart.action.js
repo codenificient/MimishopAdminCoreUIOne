@@ -90,7 +90,7 @@ export const updateCartAction = () => {
 		const { auth } = store.getState();
 		let cartItems = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : null;
 
-		console.log('hello from update cart action');
+		// console.log('hello from update cart action');
 
 		if (auth.authenticate) {
 			localStorage.removeItem('cart');

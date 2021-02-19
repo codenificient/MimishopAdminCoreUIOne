@@ -1,32 +1,46 @@
 import React, { useEffect, useState } from 'react';
-import { IoIosArrowDown, IoIosCart, IoMdSearch } from 'react-icons/io';
+import { IoIosArrowDown, IoMdSearch } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { login, signout, signup as _signup } from '../../actions';
 import flipkartLogo from '../../images/shopLogo7.png';
 import { DropdownMenu, MaterialButton, MaterialInput, Modal } from '../MaterialUI';
+import SearchBox from '../SearchBox';
+import Cart from '../UI/Cart';
 import './style.css';
-
-/**
-* @author
-* @function Header
-**/
 
 const Header = (props) => {
 	const [ loginModal, setLoginModal ] = useState(false);
 	const [ email, setEmail ] = useState('');
 	const [ password, setPassword ] = useState('');
-	const [ signup, setSignup ] = useState('');
+	const [ signup, setSignup ] = useState(false);
 	const [ firstName, setFirstName ] = useState('');
 	const [ lastName, setLastName ] = useState('');
+	const [ error, setError ] = useState('');
+	const [ searchField, setSearchField ] = useState('');
 
 	const dispatch = useDispatch();
 	const auth = useSelector((state) => state.auth);
+	const cart = useSelector((state) => state.cart);
+	
 
 	const cancelLogin = () => {
 		setEmail('');
 		setPassword('');
 		setLoginModal(false);
 	};
+
+
+
+	const handleChange = (e) => setSearchField({ searchField: e.target.value });
+
+	const handleSearch = () => { }
+	// 	const someProducts = product.allProducts.filter((item) => item.name.toLowerCase().includes(searchField.toLowerCase()));
+	// 	setFilteredProducts(someProducts)
+	// }
+
+
+	// console.log({ filteredProducts });
 
 	const userSignup = () => {
 		const user = { firstName, lastName, email, password };
@@ -42,12 +56,9 @@ const Header = (props) => {
 		}
 		dispatch(login({ email, password }));
 	};
+
 	const userLogout = () => {
 		dispatch(signout());
-	};
-
-	const userOrders = () => {
-		props.history.push(`/accout/orders`);
 	};
 
 	useEffect(
@@ -68,30 +79,23 @@ const Header = (props) => {
 					</a>
 				}
 				menus={[
-					{ label: 'My Profile', href: '', icon: null },
+					{ label: 'Mon Profile', href: '', icon: null },
 					{ label: 'SuperCoin Zone', href: '', icon: null },
-					{ label: 'Flipkart Plus Zone', href: '', icon: null },
 					{
-						label: 'Orders',
+						label: 'Achats',
 						href: `/account/orders`,
 						icon: null,
 						onclick: () => {
 							!auth.authenticate && setLoginModal(true);
 						}
 					},
-					{ label: 'Wishlist', href: '', icon: null },
-					{ label: 'My Chats', href: '', icon: null },
-					{ label: 'Rewards', href: '', icon: null },
-					{ label: 'Coupons', href: '', icon: null },
-					{ label: 'Gift Cards', href: '', icon: null },
-					{ label: 'Logout', href: '', icon: null, onClick: userLogout }
+					{ label: 'Souhaits', href: '', icon: null },
+					{ label: 'Mes Chats', href: '', icon: null },
+					{ label: 'Récompenses', href: '', icon: null },
+					{ label: 'Cadeaux', href: '', icon: null },
+					{ label: 'Déconnecter', href: '', icon: null, onClick: userLogout }
 				]}
-				firstMenu={
-					<div className="firstmenu">
-						<span>New Customer?</span>
-						<a style={{ color: '#2874f0' }}>Sign Up</a>
-					</div>
-				}
+
 			/>
 		);
 	};
@@ -99,16 +103,16 @@ const Header = (props) => {
 		return (
 			<DropdownMenu
 				menu={
-					<a
+					<Link
 						className="loginButton"
-						style={{ color: '#177c7c' }}
+						style={{ color: '#177c7c', minWidth: '130px' }}
 						onClick={() => {
 							setLoginModal(true);
 							setSignup(false);
 						}}
 					>
 						Connection
-					</a>
+					</Link>
 				}
 				menus={[
 					{
@@ -120,7 +124,7 @@ const Header = (props) => {
 						}
 					},
 					{
-						label: 'Commandes',
+						label: 'Achats',
 						href: `/account/orders`,
 						icon: null,
 						onClick: () => {
@@ -134,16 +138,15 @@ const Header = (props) => {
 				]}
 				firstMenu={
 					<div className="firstmenu">
-						<span style={{ color: '#177c7c', fontSize: '14px' }}>Nouveau Client?</span>
-						<a
-							style={{ color: '#177c7c', fontSize: '14px', fontWeight: '600' }}
-							onclick={() => {
+						<span>Nouveau Client?</span>
+						<Link
+							onClick={() => {
 								setLoginModal(true);
 								setSignup(true);
 							}}
 						>
-							Créer un compte
-						</a>
+							Créer compte
+						</Link>
 					</div>
 				}
 			/>
@@ -152,7 +155,8 @@ const Header = (props) => {
 
 	return (
 		// header starts here
-		<div className="header">
+		<div className="header"
+		>
 			<Modal visible={loginModal} onClose={cancelLogin}>
 				<div className="authContainer">
 					<div className="row">
@@ -165,17 +169,18 @@ const Header = (props) => {
 						<div className="rightspace">
 							<div className="loginInputContainer">
 								{signup && (
-									<MaterialButton
+									<MaterialInput
 										type="text"
-										label="Enter First Name"
+										label="Votre prénom"
 										value={firstName}
 										onChange={(e) => setFirstName(e.target.value)}
 									/>
 								)}
+
 								{signup && (
-									<MaterialButton
+									<MaterialInput
 										type="text"
-										label="Enter Last Name"
+										label="Votre nom"
 										value={lastName}
 										onChange={(e) => setLastName(e.target.value)}
 									/>
@@ -183,7 +188,7 @@ const Header = (props) => {
 
 								<MaterialInput
 									type="text"
-									label="Email ou Numéro de Telephone"
+									label="Email ou Numéro Mobile"
 									value={email}
 									onChange={(e) => setEmail(e.target.value)}
 								/>
@@ -193,22 +198,22 @@ const Header = (props) => {
 									label="Votre Mot de Passe"
 									value={password}
 									onChange={(e) => setPassword(e.target.value)}
-									rightElement={<a href="#">Forgot?</a>}
 								/>
+								{/* rightElement={<a href="#">Forgot?</a>} */}
 								<MaterialButton
-									title={signup ? 'Creer nouveau Compte' : 'Se connecter'}
+									title={signup ? 'Créer nouveau Compte' : 'Se connecter'}
 									bgColor="rgb(23, 124, 124)"
 									textColor="#fff"
-									style={{ margin: '40px 0 20px 0', borderRadius: '30px' }}
+									style={{ marginTop: '50px', borderRadius: '30px' }}
 									onClick={userLogin}
 								/>
 
-								<p style={{ textAlign: 'center' }}>OU</p>
+								<p style={{ textAlign: 'center', margin: '10px 0' }}>OU</p>
 								<MaterialButton
 									title="Recevoir code par SMS"
 									bgColor="rgb(235, 235, 235)"
 									textColor="rgb(23, 124, 124)"
-									style={{ margin: '20px 0', borderRadius: '30px' }}
+									style={{ marginTop: '25px', borderRadius: '30px' }}
 								/>
 							</div>
 						</div>
@@ -219,7 +224,7 @@ const Header = (props) => {
 			{/* subheader begins here */}
 			<div className="subHeader">
 				<div className="logo">
-					<a href="">
+					<a href="/">
 						<img src={flipkartLogo} className="logoimage" alt="" />
 					</a>
 					{/* <a style={{ marginTop: '-10px' }}>
@@ -228,26 +233,12 @@ const Header = (props) => {
 						<img src={goldenStar} className="goldenStar" alt="" />
 					</a> */}
 				</div>
-				<div
-					style={{
-						padding: '0 10px'
-					}}
-				>
-					<div className="searchInputContainer">
-						<input className="searchInput" placeholder={'search for products, brands and more'} />
-						<div className="searchIconContainer">
-							<IoMdSearch
-								style={{
-									color: 'rgb(7,155,155)',
-									width: '30px',
-									height: '30px'
-								}}
-							/>
-						</div>
-					</div>
-				</div>
+		
 				{/* side header ends here */}
-
+				<SearchBox
+					handleChange={handleChange}
+					handleSearch={handleSearch}
+				/>
 				{/* right side menu starts here */}
 				<div className="rightMenu">
 					{auth.authenticate ? renderLoggedInMenu() : renderNonLoggedInMenu()}
@@ -268,7 +259,9 @@ const Header = (props) => {
 					/>
 					<div>
 						<a href={`/cart`} className="cart">
-							<IoIosCart />
+							{/* <IoIosCart />
+							 */}
+							<Cart count={Object.keys(cart.cartItems).length} />
 							<span className="pannier" style={{ margin: '0 10px' }}>
 								Pannier
 							</span>

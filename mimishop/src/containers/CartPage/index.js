@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { IoIosArrowForward } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCartAction, clearCartAction, getCartItemsAction } from '../../actions';
+import { addToCartAction, clearCartAction, getCartItemsAction, removeCartItemAction } from '../../actions';
 import Layout from '../../components/Layout';
 import { Breed, MaterialButton } from '../../components/MaterialUI';
 import PriceDetails from '../../components/PriceDetails';
@@ -23,6 +23,10 @@ export default function CartPage(props) {
 		},
 		[ cart.cartItems ]
 	);
+
+	useEffect(() => {
+		document.title = 'Votre Pannier - MimiShop';
+	}, []);
 
 	useEffect(
 		() => {
@@ -48,6 +52,10 @@ export default function CartPage(props) {
 		dispatch(addToCartAction(_id, name, price, img), qty);
 	};
 
+	const onRemoveCartItem = (_id) => {
+		dispatch(removeCartItemAction({ productId: _id }));
+	};
+
 	const clearCart = () => {
 		dispatch(clearCartAction());
 	};
@@ -62,6 +70,7 @@ export default function CartPage(props) {
 						onQuantityInc={onQuantityIncrement}
 						onQuantityDec={onQuantityDecrement}
 						onQuantityUp={onQuantityUpdate}
+						onRemoveCartItem={onRemoveCartItem}
 					/>
 				))}
 			</React.Fragment>
@@ -92,6 +101,7 @@ export default function CartPage(props) {
 							onQuantityInc={onQuantityIncrement}
 							onQuantityDec={onQuantityDecrement}
 							style={{ fontWeight: 'normal' }}
+							onRemoveCartItem={onRemoveCartItem}
 						/>
 					))}
 
@@ -113,8 +123,15 @@ export default function CartPage(props) {
 							}}
 						>
 							<MaterialButton title="PAYER" onClick={() => props.history.push(`/checkout`)} />
-							<MaterialButton title="RETOURNER" onClick={() => props.history.goBack()} />
-							<MaterialButton title="VIDER PANNIER" onClick={clearCart} />
+							<MaterialButton
+								title="RETOURNER"
+								onClick={() => props.history.goBack()}
+								bgColor="#ff9f00"
+							/>
+							<MaterialButton title="VIDER PANNIER" onClick={clearCart}
+							bgColor="#fb641b"
+							/>
+							
 						</div>
 					</div>
 				</Card>

@@ -10,10 +10,10 @@ export default function NewModal(props) {
 			<Modal.Body>{props.children}</Modal.Body>
 			<Modal.Footer>
 				<Button variant="secondary" onClick={props.handleClose}>
-					Cancel
+					Annuler
 				</Button>
 				<Button variant="primary" onClick={props.handleSubmit}>
-					Save Changes
+					Sauvegarder
 				</Button>
 			</Modal.Footer>
 		</Modal>

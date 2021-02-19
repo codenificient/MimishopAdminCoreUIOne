@@ -90,7 +90,7 @@ const AddressForm = (props) => {
 					</div>
 					<div style={inputContainer}>
 						<MaterialInput
-							label="10-digit mobile number"
+							label="Numéro mobile"
 							value={mobileNumber}
 							onChange={(e) => setMobileNumber(e.target.value)}
 						/>
@@ -100,7 +100,7 @@ const AddressForm = (props) => {
 				<div className="flexRow">
 					<div style={inputContainer}>
 						<MaterialInput
-							label="Street Address"
+							label="Address de la Rue"
 							value={streetAddress}
 							onChange={(e) => setStreetAddress(e.target.value)}
 						/>
@@ -109,7 +109,7 @@ const AddressForm = (props) => {
 				<div className="flexRow">
 					<div style={inputContainer}>
 						<MaterialInput
-							label="Address 2"
+							label="Addresse 2"
 							value={addressTwo}
 							onChange={(e) => setAddressTwo(e.target.value)}
 						/>
@@ -139,7 +139,7 @@ const AddressForm = (props) => {
 								name="addressType"
 								value="home"
 							/>
-							<span>Home</span>
+							<span>Domicile</span>
 						</div>
 						<div>
 							<input
@@ -148,7 +148,7 @@ const AddressForm = (props) => {
 								name="addressType"
 								value="work"
 							/>
-							<span>Work</span>
+							<span>Bureau</span>
 						</div>
 					</div>
 				</div>
@@ -162,7 +162,7 @@ const AddressForm = (props) => {
 						}}
 					/>
 					<MaterialButton
-						title="CANCEL"
+						title="ANNULER"
 						onClick={props.onCancel}
 						bgColor="rgb(235, 235, 235)"
 						textColor="rgb(23, 124, 124)"
@@ -185,7 +185,7 @@ const AddressForm = (props) => {
 			<div className={`checkoutHeader`}>
 				<div>
 					<span className="stepNumber">+</span>
-					<span className="stepTitle">{'ADD NEW ADDRESS'}</span>
+					<span className="stepTitle">{'AJOUTER ADDRESSE'}</span>
 				</div>
 			</div>
 			<div

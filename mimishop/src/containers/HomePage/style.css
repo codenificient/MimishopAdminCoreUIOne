@@ -1,1 +1,45 @@
 
+.ItemInfoContainer {
+    color: black;
+    margin-left: 30px;
+}
+
+ .productPrice {
+	font-size: 15px;
+	font-weight: bold;
+	margin: 5px 0;
+	color: rgb(7, 155, 155);
+}
+
+
+
+.AdrContainer {
+	display: flex;
+	box-sizing: border-box;
+}
+
+
+.ItemImgContainer {
+	width: 90px;
+	height: 90px;
+	overflow: visible;
+	text-align: center;
+	margin: 5px;
+}
+.ItemImgContainer > img {
+	max-width: 250%;
+	max-height: 400%;
+	object-fit: contain;
+	transform: translateY(-35px);
+}
+
+
+.ItemName {
+	color: rgb(7, 155, 155);
+	font-size: larger;
+}
+
+.ItemDesc,
+.ItemName {
+  margin: 20px 0 20px 0;
+}

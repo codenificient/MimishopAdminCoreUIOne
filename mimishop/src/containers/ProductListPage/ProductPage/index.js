@@ -18,6 +18,10 @@ export default function ProductPage(props) {
 		dispatch(getProductPage(payload));
 	}, []);
 
+			useEffect(() => {
+		document.title = 'Votre Produit - MimiShop'
+	}, [])
+
 	return (
 		<div style={{ margin: '0 15px' }}>
 			<h1>{page.title}</h1>

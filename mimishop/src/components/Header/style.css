@@ -75,14 +75,15 @@
 .loginButton {
 	display: block;
 	width: 100px;
-	height: 30px;
+	height: 40px;
 	background: #fff;
 	text-align: center;
-	line-height: 30px;
+	line-height: 40px;
 	color: #212121;
 	font-weight: 700;
 	font-size: 16px;
 	cursor: pointer;
+	justify-content: center;
 }
 .more {
 	font-weight: bold;
@@ -118,7 +119,7 @@
 	color: #212121;
 	margin: 0 auto;
 	border-radius: 2px;
-	height: 528px;
+	min-height: 600px;
 	max-width: 750px;
 	min-width: 650px;
 }
@@ -126,7 +127,7 @@
 	width: 100%;
 	display: flex;
 	flex-flow: row wrap;
-	height: 528px;
+	height: 650px;
 	max-width: 750px;
 	min-width: 650px;
 }
@@ -145,7 +146,7 @@
 }
 
 .baisser {
-	margin-top: 15%;
+	margin-top: 10%;
 }
 
 .rightspace {
@@ -158,6 +159,12 @@
 .loginInputContainer {
 	width: 100%;
 	box-sizing: border-box;
-	padding: 0 30px;
-	margin: 40px 0;
+	padding: 0 20px;
+	margin: 40px auto;
+}
+
+.firstmenu {
+	color: #177c7c;
+	 font-size: 14px;
+	 font-weight: 600;
 }

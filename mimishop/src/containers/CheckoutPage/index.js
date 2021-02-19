@@ -152,7 +152,7 @@ const CheckoutPage = (props) => {
 			items,
 			paymentStatus: 'pending',
 			deliveryCharges: delivery,
-			paymentType: paymentOption ? paymentOption : 'cod'
+			paymentType: paymentOption ? paymentOption : 'cash'
 		};
 
 		// console.log(payload);
@@ -181,6 +181,10 @@ const CheckoutPage = (props) => {
 		},
 		[ user.address ]
 	);
+
+	useEffect(() => {
+		document.title = 'Paiement et Commande - MimiShop';
+	}, []);
 
 	useEffect(
 		() => {
@@ -211,7 +215,7 @@ const CheckoutPage = (props) => {
 									<div className="loginInputContainer">
 										<MaterialInput
 											type="text"
-											label="Email ou Numéro de Telephone"
+											label="Email ou Numéro Mobile"
 											value={email}
 											onChange={(e) => setEmail(e.target.value)}
 										/>
@@ -256,7 +260,7 @@ const CheckoutPage = (props) => {
 					/>
 					<CheckoutStep
 						stepNumber={'2'}
-						title={'DELIVERY ADDRESS'}
+						title={'ADDRESSE DE LIVRAISON'}
 						active={!confirmAddress && auth.authenticate}
 						body={
 							<React.Fragment>
@@ -283,7 +287,7 @@ const CheckoutPage = (props) => {
 					) : auth.authenticate ? (
 						<CheckoutStep
 							stepNumber={'+'}
-							title={'ADD NEW ADDRESS'}
+							title={'AJOUTER NOUVELLE ADDRESSE'}
 							active={false}
 							onClick={() => setNewAddress(true)}
 						/>
@@ -291,7 +295,7 @@ const CheckoutPage = (props) => {
 
 					<CheckoutStep
 						stepNumber={'3'}
-						title={'ORDER SUMMARY'}
+						title={"RESUME D'ACHAT"}
 						active={orderSummary}
 						body={
 							orderSummary ? (
@@ -305,7 +309,7 @@ const CheckoutPage = (props) => {
 					{orderSummary && (
 						<Card
 							style={{
-								width: 'calc(100%)'
+								width: 'calc(100% - 400px)'
 							}}
 						>
 							<div
@@ -318,7 +322,7 @@ const CheckoutPage = (props) => {
 								}}
 							>
 								<p style={{ fontSize: '12px' }}>
-									Order confirmation email will be sent to <strong>{auth.user.email}</strong>
+									Une confirmation d'achat sera envoyée à <strong>{auth.user.email}</strong>
 								</p>
 								<MaterialButton
 									title="CONTINUER"
@@ -333,7 +337,7 @@ const CheckoutPage = (props) => {
 
 					<CheckoutStep
 						stepNumber={'4'}
-						title={'PAYMENT OPTIONS'}
+						title={'OPTIONS DE PAIEMENT'}
 						active={paymentStep && auth.authenticate}
 						body={
 							paymentStep && (
@@ -342,20 +346,22 @@ const CheckoutPage = (props) => {
 										<input
 											type="radio"
 											name="paymentOption"
-											value="credit"
+											value="carte"
 											onClick={(e) => setPaymentOption(e.target.value)}
 										/>&nbsp;
-										<div>Credit card</div>
+										<div>Carte bancaire</div>
 									</div>
+							
 									<div className="flexRow">
 										<input
 											type="radio"
 											name="paymentOption"
-											value="debit"
+											value="bitcoin"
 											onClick={(e) => setPaymentOption(e.target.value)}
 										/>&nbsp;
-										<div>Debit card</div>
+										<div>Cripto-Monnaie Bitcoin</div>
 									</div>
+
 									<div className="flexRow">
 										<input
 											type="radio"
@@ -365,6 +371,7 @@ const CheckoutPage = (props) => {
 										/>&nbsp;
 										<div>PayPal</div>
 									</div>
+
 									<div className="flexRow">
 										<input
 											type="radio"
@@ -378,7 +385,7 @@ const CheckoutPage = (props) => {
 										<input
 											type="radio"
 											name="paymentOption"
-											value="cod"
+											value="cash"
 											onClick={(e) => setPaymentOption(e.target.value)}
 										/>&nbsp;
 										<div>Cash on delivery</div>

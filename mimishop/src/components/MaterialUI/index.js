@@ -27,6 +27,7 @@ const Modal = (props) => {
 
 const MaterialInput = (props) => {
 	const [ focus, setFocus ] = useState(false);
+	const [ touch, setTouch ] = useState(false);
 
 	return (
 		<div className="materialInput">
@@ -38,7 +39,7 @@ const MaterialInput = (props) => {
 					...props.style
 				}}
 			>
-				{props.label}
+				{props.label && `Entrer ${props.label}`}
 			</label>
 			<div
 				style={{
@@ -52,15 +53,21 @@ const MaterialInput = (props) => {
 					onChange={props.onChange}
 					onFocus={(e) => {
 						setFocus(true);
+						setTouch(true)
 					}}
 					onBlur={(e) => {
 						if (e.target.value === '') {
 							setFocus(false);
+						} else {
+							setTouch(false)
 						}
 					}}
 				/>
 				{props.rightElement ? props.rightElement : null}
 			</div>
+			{
+				touch && <div style={{ fontSize: '12px', color: 'red', fontWeight: '500'}}>{`${props.label} est réquis`}</div>
+			}
 		</div>
 	);
 };
@@ -87,7 +94,8 @@ const MaterialButton = (props) => {
 				onClick={onClick}
 			>
 				{props.icon && props.icon} &nbsp;&nbsp;
-				{props.title && props.title}
+				{props.title && props.title} &nbsp;&nbsp;
+				{props.icon1 && props.icon1}
 			</button>
 		</div>
 	);

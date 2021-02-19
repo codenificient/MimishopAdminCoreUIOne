@@ -1,10 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import WebFont from 'webfontloader';
 import App from './App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import store from './store';
+
+WebFont.load({
+	google: {
+		families: [ 'Poppins:600,700', 'sans-serif', 'Oswald:600' ]
+	}
+});
 
 window.store = store;
 

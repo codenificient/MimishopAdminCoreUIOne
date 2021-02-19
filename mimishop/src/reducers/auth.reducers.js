@@ -16,7 +16,7 @@ const initialState = {
 };
 // eslint-disable-next-line
 export default (state = initialState, action) => {
-	console.log(action);
+	// console.log(action);
 	// eslint-disable-next-line
 	switch (action.type) {
 		case authConstants.LOGIN_REQUEST:

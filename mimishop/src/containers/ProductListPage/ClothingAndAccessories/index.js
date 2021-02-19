@@ -16,6 +16,10 @@ export default function ClothingAndAccessories(props) {
 		dispatch(getAllProductsBySlug(match.params.slug));
 	}, []);
 
+	useEffect(() => {
+		document.title = 'Votre Magasin - MimiShop';
+	}, []);
+
 	return (
 		<div style={{ margin: '10px' }}>
 			<Card style={{ display: 'flex', boxSizing: 'border-box', padding: '10px' }}>

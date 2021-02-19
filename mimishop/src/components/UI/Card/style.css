@@ -2,8 +2,9 @@
 	width: 100%;
 	background: #fff;
 	/* border: 1px solid #cecece; */
-	box-shadow: rgba(0, 0, 0, .2) 0 1px 2px 0 !important;
+	box-shadow: rgba(23, 124, 124, .5) 10px 0px 19px 15px !important;
 	border-radius: 20px;
+	margin: 60px auto;
 }
 
 .cardHeader {

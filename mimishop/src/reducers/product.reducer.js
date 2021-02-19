@@ -8,7 +8,8 @@ const initialState = {
 	page: {},
 	error: null,
 	productDetails: {},
-	loading: false
+	loading: false,
+	allProducts: []
 };
 
 export default (state = initialState, action) => {
@@ -58,6 +59,27 @@ export default (state = initialState, action) => {
 			};
 			break;
 		case productConstants.GET_PRODUCT_DETAILS_BY_ID_FAILURE:
+			state = {
+				...state,
+				loading: false,
+				error: action.payload.error
+			};
+			break;
+
+		case productConstants.GET_ALL_PRODUCT_REQUEST:
+			state = {
+				...state,
+				loading: true
+			};
+			break;
+		case productConstants.GET_ALL_PRODUCT_SUCCESS:
+			state = {
+				...state,
+				loading: false,
+				allProducts: action.payload.products
+			};
+			break;
+		case productConstants.GET_ALL_PRODUCT_FAILURE:
 			state = {
 				...state,
 				loading: false,

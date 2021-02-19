@@ -16,7 +16,6 @@ export default function CartItem(props) {
 		props.onQuantityDec(_id, qty - 1);
 	};
 
-
 	return (
 		<div className="cartItemContainer">
 			<div className="flexRow">
@@ -40,11 +39,13 @@ export default function CartItem(props) {
 			>
 				<div className="quantityControl">
 					<button onClick={onQuantityDecrement}>-</button>
-					<input value={qty} onChange={(e) => setQty(e.target.value)} />
+					<input value={qty} readOnly />
 					<button onClick={onQuantityIncrement}>+</button>
 				</div>
 				<button className="cartActionBtn">sauvegarder sur liste</button>
-				<button className="cartActionBtn">Supprimer</button>
+				<button onClick={() => props.onRemoveCartItem(_id)} className="cartActionBtn">
+					Supprimer
+				</button>
 			</div>
 			<hr />
 		</div>

@@ -26,7 +26,7 @@ axiosInstance.interceptors.response.use(
 		return res;
 	},
 	(error) => {
-		console.log(error.message);
+		// console.log(error.message);
 		const status = error.response ? error.response.status : 500;
 
 		if (status && status === 500) {

@@ -8,7 +8,7 @@ import './style.css';
 
 export default function ProductListPage(props) {
 	const renderProduct = () => {
-		console.log(props);
+		// console.log(props);
 
 		const params = getParams(props.location.search);
 		let content = null;
@@ -29,7 +29,7 @@ export default function ProductListPage(props) {
 
 	return (
 		<Layout>
-			{/* <h1>Product List Page</h1> */}
+			<h1>Product List Page</h1>
 
 			{renderProduct()}
 		</Layout>

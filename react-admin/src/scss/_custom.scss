@@ -1,0 +1,62 @@
+// Here you can add other styles
+.c-subheader,
+.c-sidebar,
+.c-header-nav-item,
+.card {
+	background-color: #23242d;
+	color: #ebedef;
+}
+
+
+
+
+.c-header,
+.c-header-nav-item
+ {
+	background-color: #157b80;
+	color: #ebedef;
+}
+
+.c-footer,
+.c-sidebar .c-sidebar-brand,
+thead .thead-light,
+.card-header {
+	background-color: #157b80;
+}
+
+.c-main {
+	background-color: #121212;
+}
+
+.card {
+	border: none;
+}
+
+.c-subheader .breadcrumb .breadcrumb-item,
+.c-subheader .c-subheader-nav .c-subheader-nav-link,
+.c-header .c-header-nav .c-header-nav-link {
+	color: #ebedef;
+}
+
+.c-header .c-header-toggler-icon {
+	background-color: #09eaf2;
+}
+
+.c-sidebar .c-sidebar-brand .c-icon {
+	// background-color: #ebedef;
+	background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png');
+}
+
+.c-header .c-header-nav-item {
+	border-bottom: none;
+	color: #eee;
+}
+
+table {
+    background: #23242d;
+    color: #ffffff;
+}
+
+table th .thead-light {
+    background-color: #157b80;
+}
