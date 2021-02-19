@@ -1,1 +1,46 @@
 // Here you can add other styles
+.c-subheader,
+.c-header,
+.c-sidebar,
+.c-header-nav-item,
+.card {
+	background-color: #23242d;
+	color: #ebedef;
+}
+
+.card-header {
+	background-color: #1e1e1e;
+}
+
+.c-main {
+	background-color: #121212;
+}
+
+
+.card {
+	border: none;
+}
+
+
+.c-subheader .breadcrumb .breadcrumb-item,
+.c-subheader .c-subheader-nav .c-subheader-nav-link,
+.c-header .c-header-nav .c-header-nav-link {
+	color: #ebedef;
+}
+
+.c-header .c-header-toggler-icon {
+	background-color: #ebedef;
+}
+
+.c-header .c-header-nav-item {
+	border-bottom: none;
+	color: #eee;
+}
+
+
+.c-sidebar .c-sidebar-brand {
+	background-image: url('../assets/icons/shopLogo7.png');
+}
+
+
+
